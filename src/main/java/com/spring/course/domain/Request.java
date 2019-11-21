@@ -25,13 +25,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-
-@AllArgsConstructor // contrutor com todos os parametros
-@NoArgsConstructor // contrutor vazio
-@Getter
-@Setter
-@ToString // método toString
-
+ 
 @Entity(name= "Request")
 public class Request implements  Serializable{
 
@@ -65,5 +59,80 @@ public class Request implements  Serializable{
 	
 	@OneToMany(mappedBy = "request")
 	private List<RequestStage> stages =  new ArrayList<RequestStage>();
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getSubject() {
+		return subject;
+	}
+
+	public void setSubject(String subject) {
+		this.subject = subject;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Date getCreadtionDate() {
+		return creadtionDate;
+	}
+
+	public void setCreadtionDate(Date creadtionDate) {
+		this.creadtionDate = creadtionDate;
+	}
+
+	public RequestState getStatus() {
+		return status;
+	}
+
+	public void setStatus(RequestState status) {
+		this.status = status;
+	}
+
+	public User getOwner() {
+		return owner;
+	}
+
+	public void setOwner(User owner) {
+		this.owner = owner;
+	}
+
+	public List<RequestStage> getStages() {
+		return stages;
+	}
+
+	public void setStages(List<RequestStage> stages) {
+		this.stages = stages;
+	}
+
+	public Request(Long id, String subject, String description, Date creadtionDate, RequestState status, User owner,
+			List<RequestStage> stages) {
+		this.id = id;
+		this.subject = subject;
+		this.description = description;
+		this.creadtionDate = creadtionDate;
+		this.status = status;
+		this.owner = owner;
+		this.stages = stages;
+	}
+
+	public Request() {
+		super();
+	}
+	
+	
+	
+	
 	
 }
