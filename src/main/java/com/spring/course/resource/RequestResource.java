@@ -22,7 +22,6 @@ public class RequestResource {
 	@Autowired
 	private RequestService requestService;
 	
-	
 	public ResponseEntity<Request> save(@RequestBody Request request, UriComponentsBuilder uriBuilder) {
 		Request createdRequest = requestService.save(request);
 		URI uri = uriBuilder.path("/requests/{id}").buildAndExpand(createdRequest.getId()).toUri();
