@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.spring.course.domain.User;
+import com.spring.course.dto.UserLoginDto;
 import com.spring.course.service.UserService;
 
 @RestController
@@ -33,4 +34,9 @@ public class UserResource {
 		
 	}
 
+	public ResponseEntity<User> login (@RequestBody UserLoginDto user) {
+		User loggedUser = userService.login(user.getEmail(), user.getPassword());
+		return ResponseEntity.ok(loggedUser);
+	}
+	
 }
