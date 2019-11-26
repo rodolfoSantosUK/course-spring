@@ -42,10 +42,9 @@ public class UserResource {
 		user.setId(id);
 		User updatedUser = userService.update(user);
 		return ResponseEntity.ok(updatedUser);
-		
 	}
 	
-	@GetMapping
+	@GetMapping("/{id}")
 	public ResponseEntity<User> getById(@PathVariable(name="id") Long id) {
 		User user = userService.getById(id);
 		return ResponseEntity.ok(user);

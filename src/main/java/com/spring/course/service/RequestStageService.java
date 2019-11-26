@@ -8,13 +8,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.spring.course.domain.Request;
 import com.spring.course.domain.RequestStage;
-import com.spring.course.domain.User;
 import com.spring.course.domain.enums.RequestState;
 import com.spring.course.repository.RequestRepository;
 import com.spring.course.repository.RequestStageRepository;
-import com.spring.course.service.util.HashUtil;
 
 @Service
 public class RequestStageService {

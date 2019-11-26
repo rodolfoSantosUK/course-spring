@@ -2,13 +2,14 @@ package com.spring.course.service;
 
 import java.util.List;
 import java.util.Optional;
-
+import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.spring.course.domain.User;
 import com.spring.course.repository.UserRepository;
 import com.spring.course.service.util.HashUtil;
 
+@Service
 public class UserService {
 
 	@Autowired
