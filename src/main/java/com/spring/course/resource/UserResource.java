@@ -21,7 +21,7 @@ import com.spring.course.service.RequestService;
 import com.spring.course.service.UserService;
 
 @RestController
-@RequestMapping(value = "users")
+@RequestMapping(value = "/users")
 public class UserResource {
 
 	@Autowired
@@ -46,8 +46,11 @@ public class UserResource {
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<User> getById(@PathVariable(name="id") Long id) {
-		User user = userService.getById(id);
-		return ResponseEntity.ok(user);
+	//	User user = userService.getById(id);
+		User usuario = new User();
+		usuario.setId(1L);
+		
+		return ResponseEntity.ok(usuario);
 	}
 
 	@GetMapping
