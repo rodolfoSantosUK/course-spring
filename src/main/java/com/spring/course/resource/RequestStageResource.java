@@ -1,5 +1,6 @@
 package com.spring.course.resource;
 
+
 import java.net.URI;
 import java.util.List;
 
@@ -14,42 +15,38 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.spring.course.domain.Request;
 import com.spring.course.domain.RequestStage;
-import com.spring.course.service.RequestService;
 import com.spring.course.service.RequestStageService;
 
 @RestController
-@RequestMapping(value = "requests")
-public class RequestResource {
+@RequestMapping(value = "requests-stages")
+public class RequestStageResource {
 
-	@Autowired
-	private RequestService requestService;
-	
 	@Autowired
 	private RequestStageService stageService;
 	
-	public ResponseEntity<Request> save(@RequestBody Request request, UriComponentsBuilder uriBuilder) {
-		Request createdRequest = requestService.save(request);
-		URI uri = uriBuilder.path("/requests/{id}").buildAndExpand(createdRequest.getId()).toUri();
-		return ResponseEntity.created(uri).body(createdRequest);
+	public ResponseEntity<RequestStage> save(@RequestBody RequestStage requestStage, UriComponentsBuilder uriBuilder) {
+		RequestStage createdRequestStage = stageService.save(requestStage);
+		URI uri = uriBuilder.path("/requests-stages/{id}").buildAndExpand(createdRequestStage.getId()).toUri();
+		return ResponseEntity.created(uri).body(createdRequestStage);
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Request> update(@PathVariable(name="id") Long id, @RequestBody Request request  ) {
-		Request updaterRequest = requestService.update(request);
-		return ResponseEntity.ok(updaterRequest);
+	public ResponseEntity<RequestStage> update(@PathVariable(name="id") Long id, @RequestBody RequestStage requestStage  ) {
+		RequestStage updatedRequestStage = stageService.update(requestStage);
+		return ResponseEntity.ok(updatedRequestStage);
 	}
 	
 	@GetMapping
-	public ResponseEntity<Request> getById(@PathVariable(name="id") Long id) {
-		Request request = requestService.getById(id);
-		return ResponseEntity.ok(request);
+	public ResponseEntity<RequestStage> getById(@PathVariable(name="id") Long id) {
+		RequestStage requestStage = stageService.getById(id);
+		return ResponseEntity.ok(requestStage);
 	}
 	
-	public ResponseEntity<List<Request>> listAll() {
-		List<Request> requests = requestService.listAll();
-		return ResponseEntity.ok(requests);
+	public ResponseEntity<List<RequestStage>> listAll() {
+		List<RequestStage> requestStage = stageService.listAll();
+		return ResponseEntity.ok(requestStage);
 	}
-	 
+	
 	@GetMapping("/{id}/requests-stages")
 	public ResponseEntity<List<RequestStage>> listAllStagesById(@PathVariable(name="id") Long id) {
 		List<RequestStage> stages =  stageService.listAllByRequestId(id);
