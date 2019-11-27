@@ -8,18 +8,15 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import com.spring.course.domain.enums.Role;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
   
 @Entity(name = "User")
@@ -39,16 +36,19 @@ public class User implements Serializable {
 	@Column(length = 75, nullable = false, unique = true)
 	private String email;
 	
-	@Column(length = 75, nullable = false)
+	
+	@Column(length = 120, nullable = false)
 	private String password;
 	
-	@Column(length = 20, nullable = false, unique = true)
+	@Column(length = 20, nullable = false)
 	@Enumerated(EnumType.STRING)
 	private Role role;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "owner")
 	private List<Request> requests = new ArrayList<Request>();
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "owner")
 	private List<RequestStage> stages = new ArrayList<RequestStage>();
 
@@ -80,6 +80,7 @@ public class User implements Serializable {
 		return password;
 	}
 
+	@JsonProperty(access = Access.WRITE_ONLY)
 	public void setPassword(String password) {
 		this.password = password;
 	}

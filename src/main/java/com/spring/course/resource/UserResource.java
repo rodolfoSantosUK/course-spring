@@ -46,11 +46,11 @@ public class UserResource {
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<User> getById(@PathVariable(name="id") Long id) {
-	//	User user = userService.getById(id);
+	 	User user = userService.getById(id);
 		User usuario = new User();
 		usuario.setId(1L);
 		
-		return ResponseEntity.ok(usuario);
+		return ResponseEntity.ok(user);
 	}
 
 	@GetMapping
