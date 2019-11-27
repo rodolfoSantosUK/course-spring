@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.spring.course.CourseSpringApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 9.388 s - in com.spring.course.CourseSpringApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 19.271 s - in com.spring.course.CourseSpringApplicationTests
