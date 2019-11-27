@@ -80,7 +80,7 @@ public class User implements Serializable {
 		return password;
 	}
 
-	@JsonProperty(access = Access.WRITE_ONLY)
+	// @JsonProperty(access = Access.WRITE_ONLY)
 	public void setPassword(String password) {
 		this.password = password;
 	}
