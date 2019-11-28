@@ -2,10 +2,12 @@ package com.spring.course.service;
 
 import java.util.List;
 import java.util.Optional;
-import org.springframework.stereotype.Service;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.spring.course.domain.User;
+import com.spring.course.exception.NotFoundException;
 import com.spring.course.repository.UserRepository;
 import com.spring.course.service.util.HashUtil;
 
@@ -30,7 +32,7 @@ public class UserService {
 
 	public User getById(Long id) {
 		Optional<User> result = userRepository.findById(id);
-		return result.get();
+		return result.orElseThrow(()-> new NotFoundException("There are not User with id = " + id));
 	}
 
 	public User login(String email, String password) {
