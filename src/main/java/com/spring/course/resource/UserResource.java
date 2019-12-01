@@ -1,7 +1,6 @@
 package com.spring.course.resource;
 
 import java.net.URI;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -73,9 +72,19 @@ public class UserResource {
 		return ResponseEntity.ok(loggedUser);
 	}
 	 
+//	@GetMapping("{id}/requests")
+//	public ResponseEntity<List<Request>> listAllRequestById(@PathVariable(name="id") Long id) {
+//		List<Request> requests = requestService.listAllByOwnerId(id);
+//		return ResponseEntity.ok(requests); 
+//	}
+	
 	@GetMapping("{id}/requests")
-	public ResponseEntity<List<Request>> listAllRequestById(@PathVariable(name="id") Long id) {
-		List<Request> requests = requestService.listAllByOwnerId(id);
-		return ResponseEntity.ok(requests); 
+	public ResponseEntity<PageModel<Request>> listAllRequestById(@PathVariable(name="id") Long id,
+			@RequestParam(value="page", defaultValue = "0") int page,
+			@RequestParam(value="size", defaultValue = "10") int size) {
+		PageRequestModel   pr =  new PageRequestModel(page, size);
+		PageModel<Request> pm = requestService.listAllByOwnerIdOnLazyModel(id, pr);
+		return ResponseEntity.ok(pm);
 	}
+	
 }
