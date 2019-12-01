@@ -29,13 +29,7 @@ public class RequestStageResource {
 		URI uri = uriBuilder.path("/requests-stages/{id}").buildAndExpand(createdRequestStage.getId()).toUri();
 		return ResponseEntity.created(uri).body(createdRequestStage);
 	}
-	
-	@PostMapping("/{id}")
-	public ResponseEntity<RequestStage> update(@PathVariable(name="id") Long id, @RequestBody RequestStage requestStage  ) {
-		RequestStage updatedRequestStage = stageService.update(requestStage);
-		return ResponseEntity.ok(updatedRequestStage);
-	}
-	
+	 
 	@GetMapping("/{id}")
 	public ResponseEntity<RequestStage> getById(@PathVariable(name="id") Long id) {
 		RequestStage requestStage = stageService.getById(id);

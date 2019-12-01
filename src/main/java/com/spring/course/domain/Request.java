@@ -47,7 +47,7 @@ public class Request implements  Serializable{
 	
 	@Column(name="creation_date")
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date creadtionDate;
+	private Date creationDate;
 	
 	@Column(length =12, nullable = false)
 	@Enumerated(EnumType.STRING)
@@ -84,12 +84,12 @@ public class Request implements  Serializable{
 		this.description = description;
 	}
 
-	public Date getCreadtionDate() {
-		return creadtionDate;
+	public Date getCreationDate() {
+		return creationDate;
 	}
 
-	public void setCreadtionDate(Date creadtionDate) {
-		this.creadtionDate = creadtionDate;
+	public void setCreadtionDate(Date creationDate) {
+		this.creationDate = creationDate;
 	}
 
 	public RequestState getStatus() {
@@ -116,12 +116,15 @@ public class Request implements  Serializable{
 		this.stages = stages;
 	}
 
-	public Request(Long id, String subject, String description, Date creadtionDate, RequestState status, User owner,
+	 
+
+	public Request(Long id, String subject, String description, Date creationDate, RequestState status, User owner,
 			List<RequestStage> stages) {
+		super();
 		this.id = id;
 		this.subject = subject;
 		this.description = description;
-		this.creadtionDate = creadtionDate;
+		this.creationDate = creationDate;
 		this.status = status;
 		this.owner = owner;
 		this.stages = stages;
