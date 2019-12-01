@@ -37,29 +37,33 @@ public class UserService {
 
 	public User getById(Long id) {
 		Optional<User> result = userRepository.findById(id);
-		
-		return result.orElseThrow(()-> new NotFoundException("There are not User with id = " + id));
+
+		return result.orElseThrow(() -> new NotFoundException("There are not User with id = " + id));
 	}
 
 	public PageModel<User> listAllOnLazyModel(PageRequestModel pr) {
 		Pageable pageable = PageRequest.of(pr.getPage(), pr.getSize());
-		Page<User>  page = userRepository.findAll(pageable);
-		
-		PageModel<User> pm = new PageModel<>((int)page.getTotalElements(), page.getSize(), 
-				                             page.getTotalPages(), page.getContent());
-		
-        return pm;
-    }
-	
+		Page<User> page = userRepository.findAll(pageable);
+
+		PageModel<User> pm = new PageModel<>((int) page.getTotalElements(), page.getSize(), page.getTotalPages(),
+				page.getContent());
+
+		return pm;
+	}
+
 	public User login(String email, String password) {
 		password = HashUtil.getSecureHash(password);
 		User user = userRepository.login(email, password);
 		return user;
 	}
-	
+
 	public List<User> listAll() {
-		List<User> 	users = userRepository.findAll();
+		List<User> users = userRepository.findAll();
 		return users;
 	}
-	
+
+	public int updateRole(User user) {
+		return userRepository.updateRole(user.getId(), user.getRole());
+    }
+
 }
