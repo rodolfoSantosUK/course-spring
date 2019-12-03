@@ -1,6 +1,7 @@
 package com.spring.course.dto;
 
-import java.util.ArrayList;
+import java.util.ArrayList; 
+import java.util.Date;
 import java.util.List;
 
 import javax.validation.constraints.NotBlank;
@@ -20,12 +21,12 @@ public class RequestUpdateDto {
 	
 	@NotNull
 	private RequestState state;
-
-	@NotNull
+ 
+	@NotNull(message = "Owner required")
 	private User owner;
-
-	private List<RequestStage> stages = new ArrayList<RequestStage>();
 	
+	private List<RequestStage> stages = new ArrayList<RequestStage>();
+
 	public String getSubject() {
 		return subject;
 	}
@@ -55,6 +56,22 @@ public class RequestUpdateDto {
 		this.subject = subject;
 		this.description = description;
 		this.state = state;
+    }
+	
+	public User getOwner() {
+		return owner;
+	}
+
+	public void setOwner(User owner) {
+		this.owner = owner;
+	}
+
+	public List<RequestStage> getStages() {
+		return stages;
+	}
+
+	public void setStages(List<RequestStage> stages) {
+		this.stages = stages;
 	}
 
 	public RequestUpdateDto() {
@@ -65,6 +82,5 @@ public class RequestUpdateDto {
 		Request request = new Request(null, subject, description, null, this.state, this.owner, stages);
 		return request;
 	}
-	
-	
+	 
 }
